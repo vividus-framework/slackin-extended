@@ -31,6 +31,54 @@ now secrets add slack-api-token "xoxb-YOUR-SLACK-TOKEN"
 now slackin-extended
 ```
 
+### Vercel
+
+1. Deploy
+    ```shell
+    $ npm i -g vercel
+    $ git clone https://github.com/vividus-framework/slackin-extended.git
+    $ vercel slackin-extended
+    Vercel CLI 28.4.12
+    ? Set up and deploy “~/slackin-extended”? [Y/n] y
+    ? Which scope do you want to deploy to? vividus
+    ? Link to existing project? [y/N] n
+    ? What’s your project’s name? support
+    ? In which directory is your code located? ./
+    🔗  Linked to vividus/support (created .vercel)
+    🔍  Inspect: https://vercel.com/vividus/support/xxxxx [3s]
+    ✅  Production: https://support-vividus.vercel.app [37s]
+    📝  Deployed to production. Run `vercel --prod` to overwrite later (https://vercel.link/2F).
+    💡  To change the domain or build command, go to https://vercel.com/vividus/support/settings
+    ```
+
+2. Configure environment variables (Use reCAPTCHA v2, not v3):
+    ```properties
+    RECAPTCHA_SECRET=***
+    RECAPTCHA_SITEKEY=****
+    SLACK_API_TOKEN=xoxp-****
+    SLACKIN_COC=https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md
+    SLACK_SUBDOMAIN=vividus-team
+    ```
+
+3. Redeploy:
+    ```shell
+    $ vercel slackin-extended
+    Vercel CLI 28.4.12
+    🔍  Inspect: https://vercel.com/vividus/support/xxxxx [4s]
+    ✅  Preview: https://support-vividus.vercel.app [31s]
+    📝  To deploy to production (support-sigma.vercel.app), run `vercel --prod`
+    ❗️  Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+    ```
+
+ 4. Deploy to Production
+    ```shell
+    $ » vercel slackin-extended --prod                                                                                                                        
+    Vercel CLI 28.4.12
+    🔍  Inspect: https://vercel.com/vividus/support/xxxxx [2s]
+    ✅  Production: https://vividus-support.vercel.app [29s]
+    ❗️  Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+    ```
+
 ### Docker
 
 The Docker container is available on Docker Hub: [emedvedev/slackin-extended](https://hub.docker.com/r/emedvedev/slackin-extended/).
